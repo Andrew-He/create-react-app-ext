@@ -17,6 +17,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
+var Config = require('webpack-config').Config;
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
 
@@ -33,7 +34,7 @@ var env = getClientEnvironment(publicUrl);
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
-module.exports = {
+module.exports = new Config().merge({
   // This makes the bundle appear split into separate modules in the devtools.
   // We don't use source maps here because they can be confusing:
   // https://github.com/facebookincubator/create-react-app/issues/343#issuecomment-237241875
@@ -221,4 +222,4 @@ module.exports = {
     net: 'empty',
     tls: 'empty'
   }
-};
+});

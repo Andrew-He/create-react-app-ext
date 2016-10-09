@@ -15,6 +15,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+var Config = require('webpack-config').Config;
 var url = require('url');
 var paths = require('./paths');
 var getClientEnvironment = require('./env');
@@ -56,7 +57,7 @@ if (env['process.env'].NODE_ENV !== '"production"') {
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
 // The development configuration is different and lives in a separate file.
-module.exports = {
+module.exports = new Config().merge({
   // Don't attempt to continue if there are any errors.
   bail: true,
   // We generate sourcemaps in production. This is slow but gives good results.
@@ -259,4 +260,4 @@ module.exports = {
     net: 'empty',
     tls: 'empty'
   }
-};
+});
